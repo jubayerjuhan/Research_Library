@@ -6,11 +6,22 @@ import Homepage from "./pages/Homepage/Homepage.jsx";
 import Userpage from "./pages/Userpage/Userpage.jsx";
 import Register from "./pages/Register/Register.jsx";
 import UserAuthChecker from "./components/AuthChecker/UserAuthChecker.jsx";
+import Myresearches from "./pages/MyResearchs/Myresearches.jsx";
+import Profile from "./pages/Profile/Profile.jsx";
+import PdfViewer from "./pages/PdfViewer/PdfViewer.jsx";
 
 function App() {
   const [count, setCount] = useState(0);
 
   const router = createBrowserRouter([
+    {
+      path: "/register",
+      element: <Register register />,
+    },
+    {
+      path: "/login",
+      element: <Register />,
+    },
     {
       path: "/",
       element: (
@@ -21,14 +32,40 @@ function App() {
       errorElement: <p>404 Not Found</p>,
     },
     {
-      path: "/register",
-      element: <Register register />,
+      path: "/all-research",
+      element: (
+        <UserAuthChecker>
+          <Homepage />
+        </UserAuthChecker>
+      ),
+      errorElement: <p>404 Not Found</p>,
     },
     {
-      path: "/login",
-      element: <Register />,
+      path: "/pdf/:id",
+      element: (
+        <UserAuthChecker>
+          <PdfViewer />
+        </UserAuthChecker>
+      ),
+      errorElement: <p>404 Not Found</p>,
     },
-    { path: "/profile", element: <Userpage /> },
+
+    {
+      path: "/my-research",
+      element: (
+        <UserAuthChecker>
+          <Myresearches />
+        </UserAuthChecker>
+      ),
+    },
+    {
+      path: "/profile",
+      element: (
+        <UserAuthChecker>
+          <Profile />
+        </UserAuthChecker>
+      ),
+    },
   ]);
 
   return (

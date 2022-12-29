@@ -12,6 +12,7 @@ export const registerUser = (creds, register) => async (dispatch) => {
     dispatch({ type: "SET_JWT", payload: data.jwtToken });
     window.location.href = "/";
   } catch (error) {
-    console.log(user);
+    console.log(error);
+    alert(error.response.data?.message);
   }
 };
