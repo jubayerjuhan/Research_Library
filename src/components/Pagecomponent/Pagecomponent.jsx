@@ -51,7 +51,7 @@ function ResponsiveDrawer(props) {
       <Divider />
       <List>
         {sidebarItems.map((text, index) => (
-          <ListItem key={text} disablePadding>
+          <ListItem key={index} disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <text.icon size={30} />

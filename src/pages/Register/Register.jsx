@@ -9,8 +9,13 @@ import {
   loginSchema,
   registerSchema,
 } from "../../validationSchemas/authSchema.js";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../redux/actions/authAction.js";
 
 const Register = ({ register }) => {
+  const [fieldValues, setFieldValues] = useState({});
+  const dispatch = useDispatch();
+
   // hook forms
   const {
     register: fieldRegister,
@@ -21,7 +26,6 @@ const Register = ({ register }) => {
     resolver: yupResolver(register ? registerSchema : loginSchema),
   });
 
-  const [fieldValues, setFieldValues] = useState({});
   const handleFieldChange = (e) => {
     setFieldValues({ ...fieldValues, [e.target.name]: e.target.value });
   };
@@ -31,7 +35,7 @@ const Register = ({ register }) => {
   console.log(errors, "errors");
   // handlesubmit
   const onSubmit = (data) => {
-    console.log(data, "data...");
+    dispatch(registerUser(data, register ? true : false));
   };
   return (
     <Box className="register">
@@ -40,6 +44,7 @@ const Register = ({ register }) => {
       <form action="" className="form" onSubmit={handleSubmit(onSubmit)}>
         {fields.map((field, key) => (
           <TextField
+            key={key}
             type={field.type}
             {...fieldRegister(field.name)}
             error={errors[field.name]}
