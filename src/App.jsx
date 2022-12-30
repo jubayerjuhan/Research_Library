@@ -9,6 +9,7 @@ import UserAuthChecker from "./components/AuthChecker/UserAuthChecker.jsx";
 import Myresearches from "./pages/MyResearchs/Myresearches.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
 import PdfViewer from "./pages/PdfViewer/PdfViewer.jsx";
+import AddPost from "./pages/AddPost/AddPost.jsx";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -41,6 +42,22 @@ function App() {
       errorElement: <p>404 Not Found</p>,
     },
     {
+      path: "/my-research",
+      element: (
+        <UserAuthChecker>
+          <Myresearches />
+        </UserAuthChecker>
+      ),
+    },
+    {
+      path: "/add-research",
+      element: (
+        <UserAuthChecker>
+          <AddPost />
+        </UserAuthChecker>
+      ),
+    },
+    {
       path: "/pdf/:id",
       element: (
         <UserAuthChecker>
@@ -50,14 +67,6 @@ function App() {
       errorElement: <p>404 Not Found</p>,
     },
 
-    {
-      path: "/my-research",
-      element: (
-        <UserAuthChecker>
-          <Myresearches />
-        </UserAuthChecker>
-      ),
-    },
     {
       path: "/profile",
       element: (

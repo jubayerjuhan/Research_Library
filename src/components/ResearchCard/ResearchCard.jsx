@@ -73,6 +73,12 @@ export default function ResearchCard({ post }) {
       </CardContent>
       <CardActions disableSpacing>
         <Chip
+          onClick={() =>
+            window.open(
+              post.file,
+              "_blank" // <- This is what makes it open in a new window.
+            )
+          }
           label="Research File.pdf"
           variant="outlined"
           sx={{ cursor: "pointer" }}

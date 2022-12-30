@@ -30,7 +30,8 @@ function ResponsiveDrawer({ children, window }) {
     { pathname: "/", name: "All Researches" },
     { pathname: "/profile", name: "Profile" },
     { pathname: "/all-research", name: "All Researches" },
-    { pathname: "/my-researchs", name: "My Research" },
+    { pathname: "/my-research", name: "My Research" },
+    { pathname: "/add-research", name: "Add Research" },
   ];
 
   React.useEffect(() => {
