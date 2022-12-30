@@ -43,7 +43,7 @@ export default function ResearchCard({ post }) {
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
+            {post.author.name?.slice(0, 1)}
           </Avatar>
         }
         action={
@@ -94,7 +94,9 @@ export default function ResearchCard({ post }) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>About This Contant :</Typography>
+          <Typography variant="h6" paragraph>
+            About This Research :
+          </Typography>
           <Typography paragraph>{post.description}</Typography>
         </CardContent>
       </Collapse>
