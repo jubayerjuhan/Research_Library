@@ -35,6 +35,7 @@ const Homepage = () => {
         label="Find Research"
         onChange={handleSearchChange}
       />
+      {loading && <p style={{ marginBottom: 2 }}>Loading...</p>}
       <Box sx={{ display: "flex", flexWrap: "wrap", gap: 5.5 }}>
         {posts.map((post, key) => {
           return <ResearchCard post={post} />;

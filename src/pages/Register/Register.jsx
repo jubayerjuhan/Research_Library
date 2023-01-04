@@ -41,6 +41,17 @@ const Register = ({ register }) => {
     <Box className="register">
       <AccountCircleIcon style={{ fontSize: 120 }} className="icon" />
       <Typography>{register ? "Register Here" : "Login Here"}</Typography>
+      {!register && (
+        <Typography>
+          If You Don't Have an Account Please{" "}
+          <a
+            style={{ textDecoration: "underline", color: "blue" }}
+            href="/register"
+          >
+            Register
+          </a>
+        </Typography>
+      )}
       <form action="" className="form" onSubmit={handleSubmit(onSubmit)}>
         {fields.map((field, key) => (
           <TextField
