@@ -23,6 +23,7 @@ const AddPost = () => {
   const { user } = useSelector((state) => state.user);
   const [post, setPost] = useState({});
   const [fileNames, setFileNames] = useState({});
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -48,15 +49,17 @@ const AddPost = () => {
       const coverUrl = await uploadFile(data.coverImage);
       data.coverImage = coverUrl;
     }
-
+    setLoading(true);
     client
       .post("/post/create", data)
       .then(({ data }) => {
+        setLoading(false);
         if (data) {
           window.location.href = "/my-research";
         }
       })
       .catch((err) => {
+        setLoading(false);
         console.log(err, "error");
       });
     console.log(data, "processed data...");
@@ -64,6 +67,11 @@ const AddPost = () => {
 
   return (
     <Pagecomponent>
+      {loading && (
+        <Typography variant="h6" sx={{ fontWeight: "600", mb: 3 }}>
+          Posting Your Research Please Wait....
+        </Typography>
+      )}
       <Typography variant="h6" sx={{ fontWeight: "600", mb: 3 }}>
         Add Research
       </Typography>
