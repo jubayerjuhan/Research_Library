@@ -42,6 +42,7 @@ const AddPost = () => {
 
   // onsubmit
   const onSubmit = async (data) => {
+    setLoading(true);
     data.author = user._id;
     const fileUrl = await uploadFile(data.file);
     data.file = fileUrl;
@@ -49,7 +50,6 @@ const AddPost = () => {
       const coverUrl = await uploadFile(data.coverImage);
       data.coverImage = coverUrl;
     }
-    setLoading(true);
     client
       .post("/post/create", data)
       .then(({ data }) => {
